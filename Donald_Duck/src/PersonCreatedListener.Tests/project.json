@@ -1,4 +1,4 @@
-﻿{
+{
   "version": "1.0.0-*",
   "testRunner": "xunit",
 
@@ -7,7 +7,8 @@
     "dotnet-test-xunit": "2.2.0-preview2-build1029",
     "Microsoft.EntityFrameworkCore.Sqlite": "1.0.0",
     "PersonCreatedListener": "1.0.0-*",
-    "NSubstitute": "2.0.0-rc"
+    "NSubstitute": "2.0.0-rc",
+    "Microsoft.EntityFrameworkCore.SqlServer": "1.0.1"
   },
 
   "frameworks": {
