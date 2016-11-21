@@ -2,8 +2,8 @@
   "name": "angular-quickstart",
   "version": "1.0.0",
   "scripts": {
-    "html": " ",
-    "start": "moveFiles && tsc && concurrently \"tsc -w\" \"lite-server\" ",
+    "move": "cp app/*.html src/",
+    "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
     "lite": "lite-server",
     "tsc": "tsc",
     "tsc:w": "tsc -w"
