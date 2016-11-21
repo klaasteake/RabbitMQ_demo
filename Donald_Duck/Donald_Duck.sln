@@ -14,6 +14,10 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Donald_Duck", "src\Donald_D
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DeelnemerDatabase", "DeelnemerDatabase\DeelnemerDatabase.xproj", "{FC03CD9B-A675-49A4-8838-11D0FBCBF53D}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "PersonCreatedListener", "src\PersonCreatedListener\PersonCreatedListener.xproj", "{D54D33AD-39A6-4CA9-807A-7B2C16275919}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "PersonCreatedListener.Tests", "src\PersonCreatedListener.Tests\PersonCreatedListener.Tests.xproj", "{83E4C6BD-8BD0-4855-BFCA-C1344F53C272}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +32,14 @@ Global
 		{FC03CD9B-A675-49A4-8838-11D0FBCBF53D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC03CD9B-A675-49A4-8838-11D0FBCBF53D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC03CD9B-A675-49A4-8838-11D0FBCBF53D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D54D33AD-39A6-4CA9-807A-7B2C16275919}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D54D33AD-39A6-4CA9-807A-7B2C16275919}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D54D33AD-39A6-4CA9-807A-7B2C16275919}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D54D33AD-39A6-4CA9-807A-7B2C16275919}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83E4C6BD-8BD0-4855-BFCA-C1344F53C272}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83E4C6BD-8BD0-4855-BFCA-C1344F53C272}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83E4C6BD-8BD0-4855-BFCA-C1344F53C272}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83E4C6BD-8BD0-4855-BFCA-C1344F53C272}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -35,5 +47,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{C2643402-C393-48C3-9AC4-30379038A2CF} = {F5629B58-40D8-4B5C-8F71-C2CE7CF814DB}
 		{FC03CD9B-A675-49A4-8838-11D0FBCBF53D} = {F5629B58-40D8-4B5C-8F71-C2CE7CF814DB}
+		{D54D33AD-39A6-4CA9-807A-7B2C16275919} = {F5629B58-40D8-4B5C-8F71-C2CE7CF814DB}
+		{83E4C6BD-8BD0-4855-BFCA-C1344F53C272} = {F5629B58-40D8-4B5C-8F71-C2CE7CF814DB}
 	EndGlobalSection
 EndGlobal
