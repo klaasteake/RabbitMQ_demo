@@ -24,7 +24,7 @@ namespace PersonCreatedListener.Tests
 
             //Act
             service.Execute(new PersonCreated() {
-                Name = "Klaas-Teake"
+                FirstName = "Klaas-Teake"
             });
 
 
@@ -32,5 +32,12 @@ namespace PersonCreatedListener.Tests
             dbset.Received(1).Add(Arg.Any<PersonCreated>());
 
         }
+
+        [Fact]
+        public void test()
+        {
+
+        }
+
     }
 }
