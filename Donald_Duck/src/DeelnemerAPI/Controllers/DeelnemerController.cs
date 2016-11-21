@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using DeelnemerDatabase;
+using RabbitMQ.Client;
+using rabbitmq_demo;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -35,9 +37,14 @@ namespace DeelnemerAPI.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public IActionResult Post([FromBody] Models.CreatePerson createPerson)
         {
-
+            var factory = new ConnectionFactory { HostName = "curistm01", UserName = "manuel", Password = "manuel" };
+            using (var sender = new Sender(factory, "DeelnemerAdminstratie"))
+            {
+                sender.PublishCommand(createPerson);
+            }
+            return Ok();       
         }
 
         // PUT api/values/5
