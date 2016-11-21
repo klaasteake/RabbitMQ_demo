@@ -34,7 +34,7 @@ namespace PersonCreatedListener.Tests
         }
 
         [Fact]
-        public void test()
+        public void PersonCreatedService_receives_new_Person_and_Saves_to_Database()
         {
 
         }
