@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using DeelnemerDatabase;
+using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 
 namespace DeelnemerAPI
 {
@@ -29,6 +28,10 @@ namespace DeelnemerAPI
         {
             // Add framework services.
             services.AddMvc();
+
+            services.AddDbContext<DeelnemerContext>(options => options
+                .UseSqlServer(new SqlConnection(@"Server=.\SQLEXPRESS;Database=JeroenDonaldDuckDeelnemers;Trusted_Connection=True")));
+            services.AddScoped<IDeelnemerContext>(provider => provider.GetService<DeelnemerContext>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
