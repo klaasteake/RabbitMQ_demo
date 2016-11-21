@@ -32,6 +32,7 @@ export class AppComponent implements OnInit {
     console.log(model, isValid);
     if(isValid){
       this.deelnemers.push(model);
+      this.deelnemerService.addDeelnemer(model);
       this.registerForm.reset();
     }
   }

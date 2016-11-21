@@ -19,4 +19,16 @@ export class DeelnemerService {
             });
         return deelnemers;
     }
+
+    addDeelnemer(context : IDeelnemer): any {
+        let result: any;
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        this.http
+            .post('http://localhost:56056/api/deelnemer', context, options)
+            .subscribe(response => {
+                 result = response.json();
+            });
+        return result;
+    }
 }
