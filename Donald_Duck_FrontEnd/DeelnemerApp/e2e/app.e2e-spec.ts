@@ -1,10 +1,10 @@
-import { PROJECTNAMEPage } from './app.po';
+import { DeelnemerPage } from './app.po';
 
 describe('project-name App', function() {
-  let page: PROJECTNAMEPage;
+  let page: DeelnemerPage;
 
   beforeEach(() => {
-    page = new PROJECTNAMEPage();
+    page = new DeelnemerPage();
   });
 
   it('should display message saying app works', () => {
