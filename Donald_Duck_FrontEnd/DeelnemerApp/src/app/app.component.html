@@ -1,6 +1,38 @@
 <h1>
   {{title}}
 </h1>
+
+<section class="col-sm-12 col-md-12">
+    <form [formGroup]="registerForm" (submit)="register(registerForm.value, registerForm.valid)">
+        <div class="form-group row">
+            <label for="firstName" class="col-sm-4 col-md-2 col-form-label">Voornaam</label>
+            <div>
+                <input id="firstName" type="text" class="col-sm-8 col-md-4" formControlName="firstName" required />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="surname" class="col-sm-4 col-md-2 col-form-label">Achternaam</label>
+            <div>
+                <input id="surname" type="text" class="col-sm-8 col-md-4" formControlName="surname" required />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="bsn" class="col-sm-4 col-md-2 col-form-label"></label>
+            <div>
+                <input id="bsn" type="number" class="col-sm-8 col-md-4" formControlName="bSN" required />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="birthDate" class="col-sm-4 col-md-2 col-form-label"></label>
+            <div>
+                <input id="bsn" type="date" class="col-sm-8 col-md-4" formControlName="birthDate" required />
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success" [disabled]="registerForm.invalid">Submit</button>
+
+    </form>
+</section>
+
 <section class="col-sm-12 col-md-12">
     <div class="col-sm-12 col-md-6">
         <table class="table table-striped">
@@ -14,31 +46,31 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor='let user of users'>
+                <tr *ngFor='let deelnemer of deelnemers'>
                     <td class="col-sm-4 col-md-2">
-                        <span *ngIf="!user.isEditing">{{user | fullname}}</span>
-                        <input type="text" [(ngModel)]="user.surname" *ngIf="user.isEditing" />
-                        <input type="text" [(ngModel)]="user.firstName" *ngIf="user.isEditing" />
+                        <span *ngIf="!deelnemer.isEditing">{{deelnemer | fullname}}</span>
+                        <input type="text" [(ngModel)]="deelnemer.surname" *ngIf="deelnemer.isEditing" />
+                        <input type="text" [(ngModel)]="deelnemer.firstName" *ngIf="deelnemer.isEditing" />
                     </td>
                     <td class="col-sm-4 col-md-2">
-                        <span *ngIf="!user.isEditing">{{user.bSN}}</span>
-                        <input type="number" [(ngModel)]="user.bSN" *ngIf="user.isEditing" />
+                        <span *ngIf="!deelnemer.isEditing">{{deelnemer.bSN}}</span>
+                        <input type="number" [(ngModel)]="deelnemer.bSN" *ngIf="deelnemer.isEditing" />
                     </td>
                     <td class="col-sm-4 col-md-2">
-                        <span *ngIf="!user.isEditing">{{user.birthDate}}</span>
-                        <input type="date" [(ngModel)]="user.birthDate" *ngIf="user.isEditing" />
+                        <span *ngIf="!deelnemer.isEditing">{{deelnemer.birthDate}}</span>
+                        <input type="date" [(ngModel)]="deelnemer.birthDate" *ngIf="deelnemer.isEditing" />
                     </td>
                     <td class="col-sm-4 col-md-2">
-                        <span *ngIf="!user.isEditing">{{user.deceasedOnDate}}</span>
-                        <input type="date" [(ngModel)]="user.deceasedOnDate" *ngIf="user.isEditing" />
+                        <span *ngIf="!deelnemer.isEditing">{{deelnemer.deceasedOnDate}}</span>
+                        <input type="date" [(ngModel)]="deelnemer.deceasedOnDate" *ngIf="deelnemer.isEditing" />
                     </td>
                     <td class="col-sm-2 col-md-1">
-                        <button *ngIf="!user.isEditing" type="button" class="btn btn-success" (click)="user.isEditing = true">edit</button>
-                        <button *ngIf="user.isEditing" type="button" class="btn btn-default" (click)="user.isEditing = false">save</button>
+                        <button *ngIf="!deelnemer.isEditing" type="button" class="btn btn-success" (click)="deelnemer.isEditing = true">edit</button>
+                        <button *ngIf="deelnemer.isEditing" type="button" class="btn btn-default" (click)="deelnemer.isEditing = false">save</button>
                     </td>
                     <td class="col-sm-2 col-md-1">
-                        <button *ngIf="!user.isEditing" type="button" class="btn btn-danger" (click)="removeUser(user)">delete</button>
-                        <button *ngIf="user.isEditing" type="button" class="btn btn-default" (click)="user.isEditing = false">cancel</button>
+                        <button *ngIf="!deelnemer.isEditing" type="button" class="btn btn-danger" (click)="removeUser(deelnemer)">delete</button>
+                        <button *ngIf="deelnemer.isEditing" type="button" class="btn btn-default" (click)="deelnemer.isEditing = false">cancel</button>
                     </td>
                 </tr>
             </tbody>
