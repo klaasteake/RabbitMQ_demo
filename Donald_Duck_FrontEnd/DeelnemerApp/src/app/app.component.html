@@ -1,3 +1,47 @@
 <h1>
   {{title}}
 </h1>
+<section class="col-sm-12 col-md-12">
+    <div class="col-sm-12 col-md-6">
+        <table class="table table-striped">
+            <thead class="thead-default">
+                <tr>
+                    <th class="col-sm-4 col-md-2">Naam</th>
+                    <th class="col-sm-4 col-md-2">BSN</th>
+                    <th class="col-sm-4 col-md-2">Geboortedatum</th>
+                    <th class="col-sm-4 col-md-2">Datum van overlijden</th>
+                    <th class="col-sm-4 col-md-2" colspan="2"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let user of users'>
+                    <td class="col-sm-4 col-md-2">
+                        <span *ngIf="!user.isEditing">{{user | fullname}}</span>
+                        <input type="text" [(ngModel)]="user.surname" *ngIf="user.isEditing" />
+                        <input type="text" [(ngModel)]="user.firstName" *ngIf="user.isEditing" />
+                    </td>
+                    <td class="col-sm-4 col-md-2">
+                        <span *ngIf="!user.isEditing">{{user.bSN}}</span>
+                        <input type="number" [(ngModel)]="user.bSN" *ngIf="user.isEditing" />
+                    </td>
+                    <td class="col-sm-4 col-md-2">
+                        <span *ngIf="!user.isEditing">{{user.birthDate}}</span>
+                        <input type="date" [(ngModel)]="user.birthDate" *ngIf="user.isEditing" />
+                    </td>
+                    <td class="col-sm-4 col-md-2">
+                        <span *ngIf="!user.isEditing">{{user.deceasedOnDate}}</span>
+                        <input type="date" [(ngModel)]="user.deceasedOnDate" *ngIf="user.isEditing" />
+                    </td>
+                    <td class="col-sm-2 col-md-1">
+                        <button *ngIf="!user.isEditing" type="button" class="btn btn-success" (click)="user.isEditing = true">edit</button>
+                        <button *ngIf="user.isEditing" type="button" class="btn btn-default" (click)="user.isEditing = false">save</button>
+                    </td>
+                    <td class="col-sm-2 col-md-1">
+                        <button *ngIf="!user.isEditing" type="button" class="btn btn-danger" (click)="removeUser(user)">delete</button>
+                        <button *ngIf="user.isEditing" type="button" class="btn btn-default" (click)="user.isEditing = false">cancel</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>

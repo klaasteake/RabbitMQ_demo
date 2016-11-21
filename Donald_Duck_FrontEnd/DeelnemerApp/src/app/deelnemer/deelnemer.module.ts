@@ -1,4 +1,5 @@
 import { NgModule, ModuleWithProviders, PipeTransform, Pipe } from '@angular/core';
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
 import { IDeelnemer, FullnamePipe } from './index';
 
@@ -11,10 +12,10 @@ import { IDeelnemer, FullnamePipe } from './index';
   declarations: [FullnamePipe],
   exports: [FullnamePipe]
 })
-export class UserModule {
+export class DeelnemerModule {
   static forRoot(): ModuleWithProviders {
     return {
-      ngModule: UserModule,
+      ngModule: DeelnemerModule,
       providers: []
     };
   }

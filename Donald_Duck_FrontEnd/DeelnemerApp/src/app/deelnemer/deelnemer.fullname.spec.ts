@@ -23,11 +23,13 @@ export function main() {
 class DeelnemerContext implements IDeelnemer {
     readonly firstName = '';
     readonly surname = '';
-    readonly emailAddress = '';
+    readonly bSN = '';
+    readonly birthDate = new Date();
+    readonly deceasedOnDate = new Date();
 
     constructor(firstName: string, surname: string, emailAddress: string) {
         this.firstName = firstName,
-            this.surname = surname,
-            this.emailAddress = emailAddress
+        this.surname = surname,
+        this.emailAddress = emailAddress
     }
 }
