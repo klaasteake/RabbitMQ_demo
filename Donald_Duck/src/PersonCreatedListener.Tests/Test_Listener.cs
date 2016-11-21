@@ -42,12 +42,16 @@ namespace PersonCreatedListener.Tests
                 .UseSqlServer(@"Server=.\SQLEXPRESS;Database=JeroenDonaldDuckDeelnemers;Trusted_Connection=true")
                 .Options;
 
+
+
             using (var context = new DeelnemerContext(options))
             using (var tx = context.Database.BeginTransaction())
+            using (var listener = new TestListener())
             {
                 context.Database.EnsureCreated();
 
-                var service = new PersonCreatedService(context);
+                var service = new BlockingReceiver<PersonCreated>();
+                service.SubscribeToEvents(listener);
 
                 //Act
                 service.Execute(new PersonCreated()
