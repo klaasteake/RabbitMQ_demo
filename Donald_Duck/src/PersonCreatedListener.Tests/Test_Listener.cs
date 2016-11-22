@@ -22,7 +22,7 @@ namespace PersonCreatedListener.Tests
 
             var service = new PersonCreatedService(context);
 
-
+            
             //Act
             service.Execute(new PersonCreated() {
                 FirstName = "Klaas-Teake"
