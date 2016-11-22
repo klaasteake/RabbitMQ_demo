@@ -44,7 +44,7 @@ namespace DeelnemerAPI.Controllers
                 return BadRequest(new { Message = "Server kon verzonden bericht niet correct lezen"});
             }
             _service.Execute(createPerson);
-            return Ok();       
+            return Ok(new { Message = $"Verzoek toevoegen deelnemer {createPerson.LastName}, {createPerson.FirstName} verzonden"});       
         }
 
         // PUT api/deelnemer/5

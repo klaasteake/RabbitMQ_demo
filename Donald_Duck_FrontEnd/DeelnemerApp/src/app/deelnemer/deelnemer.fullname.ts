@@ -7,6 +7,6 @@ import { IDeelnemer } from './deelnemer.interface';
 })
 export class FullnamePipe implements PipeTransform {
     transform(deelnemer: IDeelnemer, ...args: any[]): any {
-        return `${deelnemer.surname}, ${deelnemer.firstName}`;
+        return `${deelnemer.lastName}, ${deelnemer.firstName}`;
     }
 }

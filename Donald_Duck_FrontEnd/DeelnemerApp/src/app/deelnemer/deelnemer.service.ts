@@ -13,7 +13,7 @@ export class DeelnemerService {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         this.http
-            .get('http://localhost:56056/api/deelnemer', options)
+            .get('http://localhost:36600/api/deelnemer', options)
             .subscribe(response => {
                 deelnemers = response.json();
             });
@@ -25,7 +25,19 @@ export class DeelnemerService {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         this.http
-            .post('http://localhost:56056/api/deelnemer', context, options)
+            .post('http://localhost:36600/api/deelnemer', context, options)
+            .subscribe(response => {
+                 result = response.json();
+            });
+        return result;
+    }
+
+    updateDeelnemer(context : IDeelnemer): any {
+        let result: any;
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        this.http
+            .put('http://localhost:36600/api/deelnemer', context, options)
             .subscribe(response => {
                  result = response.json();
             });

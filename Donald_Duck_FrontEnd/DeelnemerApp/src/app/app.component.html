@@ -11,19 +11,19 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="surname" class="col-sm-4 col-md-2 col-form-label">Achternaam</label>
+            <label for="lastName" class="col-sm-4 col-md-2 col-form-label">Achternaam</label>
             <div>
-                <input id="surname" type="text" class="col-sm-8 col-md-4" formControlName="surname" required />
+                <input id="lastName" type="text" class="col-sm-8 col-md-4" formControlName="lastName" required />
             </div>
         </div>
         <div class="form-group row">
-            <label for="bsn" class="col-sm-4 col-md-2 col-form-label"></label>
+            <label for="bsn" class="col-sm-4 col-md-2 col-form-label">BSN</label>
             <div>
                 <input id="bsn" type="number" class="col-sm-8 col-md-4" formControlName="bSN" required />
             </div>
         </div>
         <div class="form-group row">
-            <label for="birthDate" class="col-sm-4 col-md-2 col-form-label"></label>
+            <label for="birthDate" class="col-sm-4 col-md-2 col-form-label">Geboorte datum</label>
             <div>
                 <input id="bsn" type="date" class="col-sm-8 col-md-4" formControlName="birthDate" required />
             </div>
@@ -49,7 +49,7 @@
                 <tr *ngFor='let deelnemer of deelnemers'>
                     <td class="col-sm-4 col-md-2">
                         <span *ngIf="!deelnemer.isEditing">{{deelnemer | fullname}}</span>
-                        <input type="text" [(ngModel)]="deelnemer.surname" *ngIf="deelnemer.isEditing" />
+                        <input type="text" [(ngModel)]="deelnemer.lastName" *ngIf="deelnemer.isEditing" />
                         <input type="text" [(ngModel)]="deelnemer.firstName" *ngIf="deelnemer.isEditing" />
                     </td>
                     <td class="col-sm-4 col-md-2">
@@ -61,12 +61,11 @@
                         <input type="date" [(ngModel)]="deelnemer.birthDate" *ngIf="deelnemer.isEditing" />
                     </td>
                     <td class="col-sm-4 col-md-2">
-                        <span *ngIf="!deelnemer.isEditing">{{deelnemer.deceasedOnDate}}</span>
-                        <input type="date" [(ngModel)]="deelnemer.deceasedOnDate" *ngIf="deelnemer.isEditing" />
+                        <span>{{deelnemer.deceasedOnDate}}</span>
                     </td>
                     <td class="col-sm-2 col-md-1">
                         <button *ngIf="!deelnemer.isEditing" type="button" class="btn btn-success" (click)="deelnemer.isEditing = true">edit</button>
-                        <button *ngIf="deelnemer.isEditing" type="button" class="btn btn-default" (click)="deelnemer.isEditing = false">save</button>
+                        <button *ngIf="deelnemer.isEditing" type="button" class="btn btn-default" (click)="update(deelnemer); deelnemer.isEditing = false">save</button>
                     </td>
                     <td class="col-sm-2 col-md-1">
                         <button *ngIf="!deelnemer.isEditing" type="button" class="btn btn-danger" (click)="removeUser(deelnemer)">delete</button>

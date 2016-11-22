@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
       firstName: ['', [Validators.required]],
-      surname: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
       bSN: ['', [Validators.required, Validators.pattern(/^[0-9]{8,9}$/)]],
       birthDate: [new Date(), [Validators.required]]
     });
@@ -35,5 +35,10 @@ export class AppComponent implements OnInit {
       this.deelnemerService.addDeelnemer(model);
       this.registerForm.reset();
     }
+  }
+
+  update(model: IDeelnemer) {
+    console.log(model);
+    this.deelnemerService.updateDeelnemer(model);
   }
 }

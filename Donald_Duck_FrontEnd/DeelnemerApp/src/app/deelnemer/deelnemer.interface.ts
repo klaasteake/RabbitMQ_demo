@@ -1,6 +1,7 @@
 export interface IDeelnemer {
+    id: number,
     firstName: string
-    surname: string, 
+    lastName: string, 
     bSN: number,
     birthDate: Date,
     deceasedOnDate: Date
