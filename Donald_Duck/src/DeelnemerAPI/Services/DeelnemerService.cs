@@ -4,7 +4,7 @@ using rabbitmq_demo;
 
 namespace DeelnemerAPI.Services
 {
-    public class DeelnemerService : IReceive<CreatePerson>, IReceive<UpdatePerson>, IDeelnemerService
+    public class DeelnemerService : IReceive<CreatePerson>, IReceive<UpdatePerson>, IReceive<DeletePerson>, IDeelnemerService
     {
         private ISender _sender;
 
