@@ -7,8 +7,8 @@ namespace DeelnemerAPI.Services
     {
         public static DeelnemerService Provide()
         {
-            var factory = new ConnectionFactory { };
-            var sender = new Sender(factory, "DeelnemerRegistratie");
+            var factory = new ConnectionFactory { HostName = "curistm01", UserName = "manuel", Password = "manuel" };
+            var sender = new Sender(factory, "DeelnemerService");
             return new DeelnemerService(sender);
         }
     }
