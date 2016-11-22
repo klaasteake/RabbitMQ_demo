@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   registerForm : FormGroup;
 
   constructor(private deelnemerService: DeelnemerService, private formBuilder: FormBuilder) {
-    deelnemerService.getDeelnemers(this.deelnemers);
+    deelnemerService.getDeelnemers((result) => this.deelnemers = result);
   }
 
   ngOnInit() {
@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
     console.log(model, isValid);
     if(isValid){
       this.deelnemers.push(model);
-      this.deelnemerService.addDeelnemer(model);
+      this.deelnemerService.addDeelnemer(model, (succes) => console.log(succes));
       this.registerForm.reset();
     }
   }
@@ -53,7 +53,7 @@ export class AppComponent implements OnInit {
   }
 
   update(model: IDeelnemer) {
-    this.deelnemerService.updateDeelnemer(model);
+    this.deelnemerService.updateDeelnemer(model, (success) => console.log(success));
     this.stopEditing(model);
   }
 

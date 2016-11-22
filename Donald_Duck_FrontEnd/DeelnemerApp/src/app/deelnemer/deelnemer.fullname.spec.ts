@@ -1,35 +1,35 @@
+/* tslint:disable:no-unused-variable */
+
 import { FullnamePipe } from './deelnemer.fullname';
 import { IDeelnemer } from './deelnemer.interface';
 
-export function main() {
-    describe('Pipe: User Fullname', () => {
-        let pipe: any;
+describe('Pipe: User Fullname', () => {
+    let pipe: any;
 
-        beforeEach(() => {
-            pipe = new FullnamePipe();
-        });
-
-        it('should concat surname and firstname, seperated by a comma', () => {
-            let firstName: string = "firstName";
-            let surname: string = "surname";
-            let emailAddress: string = "a@a.aa"
-
-            var deelnemer = new DeelnemerContext(firstName, surname, emailAddress);
-            expect(pipe.transform(deelnemer)).toBe('surname, firstName');
-        });
+    beforeEach(() => {
+        pipe = new FullnamePipe();
     });
-}
+
+    it('should concat lastName and firstNAme, seperated by a comma', () => {
+        let firstName: string = "firstName";
+        let lastName: string = "lastName";
+
+        var deelnemer = new DeelnemerContext(firstName, lastName);
+        expect(pipe.transform(deelnemer)).toBe('lastName, firstName');
+    });
+});
+
 
 class DeelnemerContext implements IDeelnemer {
+    readonly id = 0;
     readonly firstName = '';
-    readonly surname = '';
-    readonly bSN = '';
+    readonly lastName = '';
+    readonly bSN = 0;
     readonly birthDate = new Date();
     readonly deceasedOnDate = new Date();
 
-    constructor(firstName: string, surname: string, emailAddress: string) {
-        this.firstName = firstName,
-        this.surname = surname,
-        this.emailAddress = emailAddress
+    constructor(firstName: string, lastName: string) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 }

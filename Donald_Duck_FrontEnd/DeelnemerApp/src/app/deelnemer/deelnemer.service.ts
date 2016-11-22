@@ -8,41 +8,55 @@ export class DeelnemerService {
 
     constructor(private http: Http) { }
 
-    getDeelnemers(deelnemers : IDeelnemer[]) {
+    getDeelnemers(callback: GetResponseAction<IDeelnemer[]>) {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        let body: IDeelnemer[];
+        let deelnemers: IDeelnemer[];
         this.http
             .get('http://localhost:36600/api/deelnemer', options)
             .subscribe(response => {
-                body = response.json();
-                body.forEach(element => {
-                    deelnemers.push(element);
-                });
+                if(response.ok){
+                    deelnemers = response.json();
+                }
+                if(typeof callback === "function"){
+                    callback(deelnemers, response.ok);
+                }
             });
     }
 
-    addDeelnemer(context : IDeelnemer): any {
+    addDeelnemer(context : IDeelnemer, callback : ResponseAction) {
         let ok: boolean;
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         this.http
             .post('http://localhost:36600/api/deelnemer', context, options)
             .subscribe(response => {
-                 ok = response.ok
+                if(typeof callback === "function"){
+                    callback(response.ok);
+                }
             });
-        return ok ? "Het voerzoek tot het toevoegen van deelnemer " + context.lastName + ", " + context.firstName : "";
     }
 
-    updateDeelnemer(context : IDeelnemer): any {
+    updateDeelnemer(context : IDeelnemer, callback: ResponseAction) {
         let result: any;
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         this.http
             .put('http://localhost:36600/api/deelnemer', context, options)
             .subscribe(response => {
-                 result = response.json();
+                if(typeof callback === "function"){
+                    callback(response.ok);
+                }
             });
-        return result;
     }
+}
+
+interface GetResponseAction<T>
+{
+    (item: T, success: boolean): void;
+}
+
+interface ResponseAction
+{
+    (success: boolean): void;
 }
