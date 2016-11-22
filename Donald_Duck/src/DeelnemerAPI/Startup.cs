@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using DeelnemerDatabase;
 using System.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using DeelnemerAPI.Services;
 
 namespace DeelnemerAPI
 {
@@ -32,6 +33,11 @@ namespace DeelnemerAPI
             services.AddDbContext<DeelnemerContext>(options => options
                 .UseSqlServer(new SqlConnection(@"Server=.\SQLEXPRESS;Database=JeroenDonaldDuckDeelnemers;Trusted_Connection=True")));
             services.AddScoped<IDeelnemerContext>(provider => provider.GetService<DeelnemerContext>());
+
+            services.AddSingleton<IDeelnemerService, DeelnemerService>((x) =>
+            {
+                return DeelnemerServiceProvider.Provide();
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +45,13 @@ namespace DeelnemerAPI
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            app.UseCors(builder =>
+            {
+                builder.AllowAnyHeader();
+                builder.AllowAnyMethod();
+                builder.AllowAnyOrigin();
+            });
 
             app.UseMvc();
         }
