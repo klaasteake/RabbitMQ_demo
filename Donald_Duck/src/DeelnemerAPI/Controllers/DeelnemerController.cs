@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using DeelnemerDatabase;
-using RabbitMQ.Client;
-using rabbitmq_demo;
+using DeelnemerAPI.Services;
+using DeelnemerAPI.Models;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,48 +13,58 @@ namespace DeelnemerAPI.Controllers
     public class DeelnemerController : Controller
     {
         private IDeelnemerContext _context;
+        private IDeelnemerService _service;
 
-        public DeelnemerController(IDeelnemerContext context)
+        public DeelnemerController(IDeelnemerContext context, IDeelnemerService service)
         {
             _context = context;
+            _service = service;
         }
 
-        // GET: api/values
+        // GET: api/deelnemer
         [HttpGet]
         public IEnumerable<PersonCreated> Get()
         {
             return _context.Deelnemers;
         }
 
-        // GET api/values/5
+        // GET api/deelnemer/5
         [HttpGet("{id}")]
         public PersonCreated Get(int id)
         {
             return _context.Deelnemers.Single(deelnemer => deelnemer.Id == id);
         }
 
-        // POST api/values
+        // POST api/deelnemer
         [HttpPost]
-        public IActionResult Post([FromBody] Models.CreatePerson createPerson)
+        public IActionResult Post([FromBody] CreatePerson createPerson)
         {
-            var factory = new ConnectionFactory { HostName = "curistm01", UserName = "manuel", Password = "manuel" };
-            using (var sender = new Sender(factory, "DeelnemerAdminstratie"))
+            if(createPerson == null)
             {
-                sender.PublishCommand(createPerson);
+                return BadRequest(new { Message = "Server kon verzonden bericht niet correct lezen"});
             }
+            _service.Execute(createPerson);
             return Ok();       
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        // PUT api/deelnemer/5
+        [HttpPut()]
+        public IActionResult Put([FromBody] UpdatePerson updatePerson)
         {
+            if (updatePerson == null)
+            {
+                return BadRequest(new { Message = "Server kon verzonden bericht niet correct lezen" });
+            }
+            _service.Execute(updatePerson);
+            return Ok();
         }
 
-        // DELETE api/values/5
+        // DELETE api/deelnemer/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            _service.Execute(new DeletePerson { Id = id });
+            return Ok();
         }
     }
 }
