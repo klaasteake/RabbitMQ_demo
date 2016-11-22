@@ -8,28 +8,30 @@ export class DeelnemerService {
 
     constructor(private http: Http) { }
 
-    getDeelnemers(): IDeelnemer[] {
-        let deelnemers: IDeelnemer[] = [];
+    getDeelnemers(deelnemers : IDeelnemer[]) {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
+        let body: IDeelnemer[];
         this.http
             .get('http://localhost:36600/api/deelnemer', options)
             .subscribe(response => {
-                deelnemers = response.json();
+                body = response.json();
+                body.forEach(element => {
+                    deelnemers.push(element);
+                });
             });
-        return deelnemers;
     }
 
     addDeelnemer(context : IDeelnemer): any {
-        let result: any;
+        let ok: boolean;
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         this.http
             .post('http://localhost:36600/api/deelnemer', context, options)
             .subscribe(response => {
-                 result = response.json();
+                 ok = response.ok
             });
-        return result;
+        return ok ? "Het voerzoek tot het toevoegen van deelnemer " + context.lastName + ", " + context.firstName : "";
     }
 
     updateDeelnemer(context : IDeelnemer): any {

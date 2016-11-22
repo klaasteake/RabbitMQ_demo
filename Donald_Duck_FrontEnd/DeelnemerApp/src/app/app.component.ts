@@ -10,11 +10,11 @@ import { IDeelnemer, FullnamePipe, DeelnemerService } from './deelnemer';
 export class AppComponent implements OnInit {
   title = 'app works!';
 
-  deelnemers : IDeelnemer[];
+  deelnemers : IDeelnemer[] = [];
   registerForm : FormGroup;
 
   constructor(private deelnemerService: DeelnemerService, private formBuilder: FormBuilder) {
-    this.deelnemers = deelnemerService.getDeelnemers();
+    deelnemerService.getDeelnemers(this.deelnemers);
   }
 
   ngOnInit() {
@@ -37,8 +37,52 @@ export class AppComponent implements OnInit {
     }
   }
 
-  update(model: IDeelnemer) {
-    console.log(model);
-    this.deelnemerService.updateDeelnemer(model);
+  startEditing(model: any) {
+    model._isEditing = true;
   }
+
+  stopEditing(model: any){
+    if(!!model._backup){
+      delete model._backup;
+    }
+    model._isEditing = false;
+  }
+
+  cancel(model: any) {
+    this.stopEditing(model);
+  }
+
+  update(model: IDeelnemer) {
+    this.deelnemerService.updateDeelnemer(model);
+    this.stopEditing(model);
+  }
+
+  copyObject<T> (object:T): T {
+    var objectCopy = <T>{};
+
+    for (var key in object)
+    {
+        if (object.hasOwnProperty(key))
+        {
+            objectCopy[key] = object[key];
+        }
+    }
+
+    return objectCopy;
+  }
+
+  //Example of Listener for (event driven) response
+  /*
+  responseListener(timeOutAfter : number){
+    let timerId : number;
+    let time : number = 0;
+    timerId = setInterval(100, function(){
+      time +=100;
+      var result = this.deelnemerService.reveivedDeelnemerCreated();
+      if(result.filled && time < timeOutAfter){
+        clearInterval(timerId);
+      }
+    });
+  }
+  */
 }
