@@ -41,10 +41,10 @@ namespace DeelnemerAPI.Controllers
         {
             if(createPerson == null)
             {
-                return BadRequest(new { Message = "Server kon verzonden bericht niet correct lezen"});
+                return Json(new { Message = "Server kon verzonden bericht niet correct lezen"});
             }
-            _service.Execute(createPerson);
-            return Ok(new { Message = $"Verzoek toevoegen deelnemer {createPerson.LastName}, {createPerson.FirstName} verzonden"});       
+            _service.CreateDeelnemer(createPerson);
+            return Ok();
         }
 
         // PUT api/deelnemer/5
@@ -53,9 +53,9 @@ namespace DeelnemerAPI.Controllers
         {
             if (updatePerson == null)
             {
-                return BadRequest(new { Message = "Server kon verzonden bericht niet correct lezen" });
+                return Json(new { Message = "Server kon verzonden bericht niet correct lezen" });
             }
-            _service.Execute(updatePerson);
+            _service.UpdateDeelnemer(updatePerson);
             return Ok();
         }
 
@@ -63,7 +63,7 @@ namespace DeelnemerAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            _service.Execute(new DeletePerson { Id = id });
+            _service.DeleteDeelnemer(new DeletePerson { Id = id });
             return Ok();
         }
     }

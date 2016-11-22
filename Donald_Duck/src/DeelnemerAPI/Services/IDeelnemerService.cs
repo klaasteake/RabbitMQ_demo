@@ -4,8 +4,8 @@ namespace DeelnemerAPI.Services
 {
     public interface IDeelnemerService
     {
-        void Execute(CreatePerson deelnemer);
-        void Execute(UpdatePerson deelnemer);
-        void Execute(DeletePerson deelnemer);
+        void CreateDeelnemer(CreatePerson deelnemer);
+        void UpdateDeelnemer(UpdatePerson deelnemer);
+        void DeleteDeelnemer(DeletePerson deelnemer);
     }
 }

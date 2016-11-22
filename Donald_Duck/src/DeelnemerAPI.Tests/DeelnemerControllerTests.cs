@@ -43,7 +43,7 @@ namespace DeelnemerAPI.Tests
             var result = controller.Put(updatePerson);
 
             //Assert
-            service.Received().Execute(updatePerson);
+            service.Received().UpdateDeelnemer(updatePerson);
             Assert.IsType<OkResult>(result);
         }
 
@@ -60,8 +60,8 @@ namespace DeelnemerAPI.Tests
             var result = controller.Post(createPerson);
 
             //Assert
-            service.Received().Execute(createPerson);
-            Assert.IsType<OkResult>(result);
+            service.Received().CreateDeelnemer(createPerson);
+            Assert.IsType<OkObjectResult>(result);
         }
 
         [Fact]
@@ -77,7 +77,7 @@ namespace DeelnemerAPI.Tests
             var result = controller.Delete(id);
 
             //Assert
-            service.Received().Execute(Arg.Is<DeletePerson>(x => x.Id == id));
+            service.Received().DeleteDeelnemer(Arg.Is<DeletePerson>(x => x.Id == id));
             Assert.IsType<OkResult>(result);
         }
 
